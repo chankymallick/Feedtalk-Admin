@@ -1,0 +1,140 @@
+<!-- <div class="row no-gutters form-input-row">
+  <div class="col-sm-1 text-center">
+    <ul class="list-group">
+      <li class="list-group-item bg-primary">FeedID</li>
+    </ul>
+  </div>
+  <div class="col-sm-3  text-center">
+    <ul class="list-group">
+      <li class="list-group-item bg-primary">Headline</li>
+    </ul>
+  </div>
+  <div class="col-sm-2 text-center">
+    <ul class="list-group">
+      <li class="list-group-item bg-primary">URL</li>
+    </ul>
+  </div>
+  <div class="col-sm-1 text-center">
+    <ul class="list-group">
+      <li class="list-group-item bg-primary">Topic</li>
+    </ul>
+  </div>
+  <div class="col-sm-1 text-center ">
+    <ul class="list-group">
+      <li class="list-group-item bg-primary">Athour</li>
+    </ul>
+  </div>
+  <div class="col-sm-2 text-center">
+    <ul class="list-group">
+      <li class="list-group-item bg-primary">Image</li>
+    </ul>
+  </div>
+  <div class="col-sm-1 text-center">
+    <ul class="list-group">
+      <li class="list-group-item bg-primary">Content</li>
+    </ul>
+  </div>
+  <div class="col-sm-1 text-center">
+    <ul class="list-group">
+      <li class="list-group-item bg-primary">Publish</li>
+    </ul>
+  </div>
+</div>
+<div class="row no-gutters form-input-row" *ngFor="let Feed of AllFeeds">
+  <div class="col-sm-1">
+    <ul class="list-group">
+      <li class="list-group-item">{{Feed.feedId}}</li>
+    </ul>
+  </div>
+  <div class="col-sm-3  text-center">
+    <ul class="list-group">
+      <li class="list-group-item ">{{Feed.headline}}</li>
+    </ul>
+  </div>
+  <div class="col-sm-2 text-center">
+    <ul class="list-group">
+      <li class="list-group-item">{{Feed.urlLink}}</li>
+    </ul>
+  </div>
+  <div class="col-sm-1 text-center">
+    <ul class="list-group">
+      <li class="list-group-item ">{{Feed.catagory}}</li>
+    </ul>
+  </div>
+  <div class="col-sm-1 text-center ">
+    <ul class="list-group">
+      <li class="list-group-item ">{{Feed.authourName}}</li>
+    </ul>
+  </div>
+  <div class="col-sm-2 text-center">
+    <ul class="list-group">
+      <li class="list-group-item"><img src='{{Feed.headLineImage}}' height="50px" width="50px"/></li>
+    </ul>
+  </div>
+  <div class="col-sm-1 text-center">
+    <ul class="list-group">
+      <li class="list-group-item "><a>Content</a></li>
+    </ul>
+  </div>
+  <div class="col-sm-1 text-center">
+    <ul class="list-group">
+      <li class="list-group-item ">{{Feed.published}}</li>
+    </ul>
+  </div>
+</div> -->
+<div class="row no-gutters form-input-row">
+    <table id="table_id" class="display">
+        <thead>
+            <tr>
+                <th>FeedID</th>
+                <th>Headline</th>
+                <th>URL</th>
+                <th>Topic</th>
+                <th>Athour</th>
+                <th>Image</th>
+                <th>Content</th>
+                <th>Publish</th>
+                
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let Feed of AllFeeds">
+                <th>{{Feed.feedId}}</th>
+                <th>{{Feed.headline}}</th>
+                <th>{{Feed.urlLink}}</th>
+                <th>{{Feed.catagory}}</th>
+                <th>{{Feed.authourName}}</th>
+                <th><img src='{{Feed.headLineImage}}' height="50px" width="50px"/></th>
+                <th><a href="#">Content</a></th>
+                <th>{{Feed.published}}</th>
+            </tr>            
+        </tbody>
+    </table>
+</div>
+
+
+
+<!--  -->
+
+
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Result</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+          <div [ngClass]="{'alert alert-success' : isResultError,'alert alert-danger':!isResultError}" role="alert">
+            {{succesdata}}
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+    </div>
