@@ -1,76 +1,82 @@
-
-
-    <div class="row no-gutters form-input-row">
-      <div class="input-group ">
-        <span class="input-group-addon" id="sizing-addon1">https://feedtalk.in/</span>
-        <input [(ngModel)]="urlLink" type="text" class="form-control" placeholder="Link Url" aria-label="Link URL" aria-describedby="sizing-addon1">
-        <span class="input-group-btn" (click)="isFeedUrlUnique()">
+<div class="row no-gutters form-input-row">
+  <div class="input-group ">
+    <span class="input-group-addon" id="sizing-addon1">https://feedtalk.in/</span>
+    <input [(ngModel)]="urlLink" [ngClass]="{'form-control verified_url_Exist ' : verifiedUrl,'form-control verified_url':!verifiedUrl}"
+      type="text" class="form-control" placeholder="Link Url" aria-label="Link URL" aria-describedby="sizing-addon1">
+    <span class="input-group-btn" (click)="isFeedUrlUnique()">
               <button class="btn btn-primary" type="button">
                   <i class="fa fa-search" aria-hidden="true"></i>    
                 Check                  
               </button>
             </span>
-      </div>
-    </div>
-    <div class="row no-gutters form-input-row">
-      <div class="input-group">
-        <span class="input-group-addon" id="sizing-addon1">Headline</span>
-        <input [(ngModel)]="headline" type="text" class="form-control" placeholder="Headline" aria-label="Headline" aria-describedby="sizing-addon1">
-      </div>
-    </div>
-    <div class="row no-gutters form-input-row">
-      <div class="input-group">
-        <span class="input-group-addon" id="sizing-addon1">Image URL</span>
-        <input [(ngModel)]="headLineImage" type="text" class="form-control" placeholder="Headling Image URL" aria-label="Headling Image URL"
-          aria-describedby="sizing-addon1">
-      </div>
-    </div>
-    <div class="row no-gutters form-input-row">
-      <div class="col-sm-4">
-        <div class="input-group">
-          <span class="input-group-addon" id="sizing-addon1">Feed Topic</span>
-          <select [(ngModel)]="catagory" id="feedtype" class="form-control">
+  </div>
+</div>
+<div class="row no-gutters form-input-row">
+  <div class="input-group">
+    <span class="input-group-addon" id="sizing-addon1">Headline</span>
+    <input [(ngModel)]="headline" type="text" class="form-control" placeholder="Headline" aria-label="Headline" aria-describedby="sizing-addon1">
+  </div>
+</div>
+<div class="row no-gutters form-input-row">
+  <div class="input-group">
+    <span class="input-group-addon" id="sizing-addon1">Image URL</span>
+    <input [(ngModel)]="headLineImage" type="text" class="form-control" placeholder="Headling Image URL" aria-label="Headling Image URL"
+      aria-describedby="sizing-addon1">
+  </div>
+</div>
+<div class="row no-gutters form-input-row">
+  <div class="col-sm-4">
+    <div class="input-group">
+      <span class="input-group-addon" id="sizing-addon1">Feed Topic</span>
+      <select [(ngModel)]="catagory" id="feedtype" class="form-control">
                 <option>POLITICS</option>
                 <option>SPORTS</option>
                 <option>ENTERTAINMENT</option>
                 <option>MOVIES</option>               
                 <option>EXXX</option>               
             </select>
-        </div>
-      </div>
-      <div class="col-sm-1"></div>
-      <div class="col-sm-4">
-        <div class="input-group">
-          <span class="input-group-addon" id="sizing-addon1">Authour</span>
-          <input [(ngModel)]="authourName" readonly type="text" class="form-control" aria-describedby="sizing-addon1">
-        </div>
-      </div>
     </div>
-    <div class="row no-gutters form-input-row ">
-      <div class="container-fluid">
+  </div>
+  <div class="col-sm-1"></div>
+  <div class="col-sm-4">
+    <div class="input-group">
+      <span class="input-group-addon" id="sizing-addon1">Authour</span>
+      <input [(ngModel)]="authourName" readonly type="text" class="form-control" aria-describedby="sizing-addon1">
+    </div>
+  </div>
+</div>
+<div class="row no-gutters form-input-row ">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="container">
         <div class="row">
-          <div class="container">
-            <div class="row">
-              <div class="col-lg-12 nopadding">
-                <textarea [(ngModel)]="content" id="txtEditor"></textarea>
-              </div>
-            </div>
+          <div class="col-lg-12 nopadding">
+            <textarea [(ngModel)]="content" id="txtEditor"></textarea>
           </div>
         </div>
       </div>
     </div>
-    <div class="row">
-      <div class="col-md-4">
-        <button type="button" class="btn btn-warning btn-lg btn-block" (click)="preview()">Preview</button>
-      </div>
-      <div class="col-md-4">
-        <button type="button" class="btn btn-danger btn-lg btn-block" (click)="uploadLater()">Upload Later</button>
+  </div>
+</div>
+<div class="row no-gutters form-input-row">
+  <div class="input-group">
+    <span class="input-group-addon" id="sizing-addon1">Content Preview</span>
+    <input [(ngModel)]="contentPreview" type="text" class="form-control" placeholder="Content Preview" aria-label="Content Preview"
+      aria-describedby="sizing-addon1">
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-4">
+    <button type="button" class="btn btn-warning btn-lg btn-block" (click)="preview()">Preview</button>
+  </div>
+  <div class="col-md-4">
+    <button type="button" class="btn btn-danger btn-lg btn-block" (click)="uploadLater()">Upload Later</button>
 
-      </div>
-      <div class="col-md-4">
-        <button type="button" class="btn btn-primary btn-lg btn-block" data-toggle="modal" data-target="#exampleModal" (click)="upload()">Upload Feed</button>
-      </div>
-    </div>
+  </div>
+  <div class="col-md-4">
+    <button type="button" class="btn btn-primary btn-lg btn-block" data-toggle="modal" data-target="#exampleModal" (click)="upload()">Upload Feed</button>
+  </div>
+</div>
 
 
 
@@ -93,4 +99,4 @@
       </div>
     </div>
   </div>
-  </div>
+</div>

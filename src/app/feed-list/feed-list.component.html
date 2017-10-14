@@ -1,87 +1,4 @@
-<!-- <div class="row no-gutters form-input-row">
-  <div class="col-sm-1 text-center">
-    <ul class="list-group">
-      <li class="list-group-item bg-primary">FeedID</li>
-    </ul>
-  </div>
-  <div class="col-sm-3  text-center">
-    <ul class="list-group">
-      <li class="list-group-item bg-primary">Headline</li>
-    </ul>
-  </div>
-  <div class="col-sm-2 text-center">
-    <ul class="list-group">
-      <li class="list-group-item bg-primary">URL</li>
-    </ul>
-  </div>
-  <div class="col-sm-1 text-center">
-    <ul class="list-group">
-      <li class="list-group-item bg-primary">Topic</li>
-    </ul>
-  </div>
-  <div class="col-sm-1 text-center ">
-    <ul class="list-group">
-      <li class="list-group-item bg-primary">Athour</li>
-    </ul>
-  </div>
-  <div class="col-sm-2 text-center">
-    <ul class="list-group">
-      <li class="list-group-item bg-primary">Image</li>
-    </ul>
-  </div>
-  <div class="col-sm-1 text-center">
-    <ul class="list-group">
-      <li class="list-group-item bg-primary">Content</li>
-    </ul>
-  </div>
-  <div class="col-sm-1 text-center">
-    <ul class="list-group">
-      <li class="list-group-item bg-primary">Publish</li>
-    </ul>
-  </div>
-</div>
-<div class="row no-gutters form-input-row" *ngFor="let Feed of AllFeeds">
-  <div class="col-sm-1">
-    <ul class="list-group">
-      <li class="list-group-item">{{Feed.feedId}}</li>
-    </ul>
-  </div>
-  <div class="col-sm-3  text-center">
-    <ul class="list-group">
-      <li class="list-group-item ">{{Feed.headline}}</li>
-    </ul>
-  </div>
-  <div class="col-sm-2 text-center">
-    <ul class="list-group">
-      <li class="list-group-item">{{Feed.urlLink}}</li>
-    </ul>
-  </div>
-  <div class="col-sm-1 text-center">
-    <ul class="list-group">
-      <li class="list-group-item ">{{Feed.catagory}}</li>
-    </ul>
-  </div>
-  <div class="col-sm-1 text-center ">
-    <ul class="list-group">
-      <li class="list-group-item ">{{Feed.authourName}}</li>
-    </ul>
-  </div>
-  <div class="col-sm-2 text-center">
-    <ul class="list-group">
-      <li class="list-group-item"><img src='{{Feed.headLineImage}}' height="50px" width="50px"/></li>
-    </ul>
-  </div>
-  <div class="col-sm-1 text-center">
-    <ul class="list-group">
-      <li class="list-group-item "><a>Content</a></li>
-    </ul>
-  </div>
-  <div class="col-sm-1 text-center">
-    <ul class="list-group">
-      <li class="list-group-item ">{{Feed.published}}</li>
-    </ul>
-  </div>
-</div> -->
+
 <div class="row no-gutters form-input-row">
     <table id="table_id" class="display">
         <thead>
@@ -93,21 +10,23 @@
                 <th>Athour</th>
                 <th>Image</th>
                 <th>Content</th>
+                <th>Views</th>               
                 <th>Publish</th>
                 
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let Feed of AllFeeds">
+            <tr *ngFor="let Feed of AllFeeds" style="color:dimgray;" > 
                 <th>{{Feed.feedId}}</th>
                 <th>{{Feed.headline}}</th>
                 <th>{{Feed.urlLink}}</th>
                 <th>{{Feed.catagory}}</th>
                 <th>{{Feed.authourName}}</th>
-                <th><img src='{{Feed.headLineImage}}' height="50px" width="50px"/></th>
-                <th><a href="#">Content</a></th>
-                <th>{{Feed.published}}</th>
-            </tr>            
+                <th><img src='{{Feed.headLineImage}}' height="80px" width="80px"/></th>
+                <th><a href="#">Content</a></th>               
+                <th>{{Feed.views}}</th>               
+                <th >{{Feed.published}}</th>
+                </tr>            
         </tbody>
     </table>
 </div>

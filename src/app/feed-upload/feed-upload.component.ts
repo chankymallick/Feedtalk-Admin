@@ -7,11 +7,13 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
   templateUrl: './feed-upload.component.html',
   styleUrls: ['./feed-upload.component.css']
 })
-export class FeedUploadComponent{
+export class FeedUploadComponent {
   title = 'Feedtalk';
+  verifiedUrl = false;
   isResultError;
   succesdata = "";
   content: string;
+  contentPreview :string;  
   views = 0;
   urlLink: string;
   headline: string;
@@ -28,7 +30,17 @@ export class FeedUploadComponent{
     $("#txtEditor").Editor();
   }
   public isFeedUrlUnique() {
-    alert(true);
+    this.http.get('https://localhost:8443/feed/NewFeed').subscribe(data => {
+      if (data == "true") {
+        this.verifiedUrl = true;
+      }
+      else {
+        this.verifiedUrl = false;
+      }
+    }, (err: HttpErrorResponse) => {
+      this.isResultError = false;
+      this.succesdata = JSON.stringify(JSON.parse(err.error).message);
+    });
   }
   public preview() {
     console.log(this.getHeaderJson());
@@ -51,6 +63,7 @@ export class FeedUploadComponent{
   public getHeaderJson() {
     let jsonBody = {
       "content": this.getEncodedContent(),
+      contentPreview :this.contentPreview,
       "views": 0,
       "urlLink": this.urlLink,
       "headline": this.headline,
@@ -59,7 +72,7 @@ export class FeedUploadComponent{
       "authourName": this.authourName,
       "published": true,
       "shared": 1,
-      "publishingDate": "1997-07-08"
+      "publishingDate": null
     };
     console.log(jsonBody);
     return jsonBody;

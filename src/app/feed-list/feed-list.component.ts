@@ -12,7 +12,6 @@ export class FeedListComponent implements OnInit {
   succesdata;
   AllFeeds;
   constructor(private http: HttpClient) {
-    alert("hi2");
   }
 
   ngOnInit() {
