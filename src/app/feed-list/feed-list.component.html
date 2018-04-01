@@ -1,59 +1,33 @@
-
-<div class="row no-gutters form-input-row">
-    <table id="table_id" class="display">
+    <table id="table_id" class="table table-striped table-bordered" style="width:100%">
         <thead>
             <tr>
                 <th>FeedID</th>
-                <th>Headline</th>
-                <th>URL</th>
+                <th>Headline</th>               
                 <th>Topic</th>
                 <th>Athour</th>
                 <th>Image</th>
+                <th>Date</th>
                 <th>Content</th>
                 <th>Views</th>               
                 <th>Publish</th>
-                
+                <th>Update</th>                
             </tr>
         </thead>
         <tbody>
             <tr *ngFor="let Feed of AllFeeds" style="color:dimgray;" > 
                 <th>{{Feed.feedId}}</th>
-                <th>{{Feed.headline}}</th>
-                <th>{{Feed.urlLink}}</th>
+                <th>{{Feed.headline}}</th>              
                 <th>{{Feed.catagory}}</th>
                 <th>{{Feed.authourName}}</th>
                 <th><img src='{{Feed.headLineImage}}' height="80px" width="80px"/></th>
+                <th>{{Feed.publishingDate}}</th>
                 <th><a href="#">Content</a></th>               
-                <th>{{Feed.views}}</th>               
-                <th >{{Feed.published}}</th>
+                <th>{{Feed.views}}</th> 
+                <th><select id="ispublished{{Feed.feedId}}" value="{{Feed.published}}">
+                    <option value="true">True</option>
+                    <option value="false">False</option>
+                </select></th> 
+                <th><input type="button" class="btn btn-sm btn-outline-primary" value="Update" (click)="updateFeed(Feed,Feed.feedId)"></th>
                 </tr>            
         </tbody>
     </table>
-</div>
-
-
-
-<!--  -->
-
-
-
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Result</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-        </div>
-        <div class="modal-body">
-          <div [ngClass]="{'alert alert-success' : isResultError,'alert alert-danger':!isResultError}" role="alert">
-            {{succesdata}}
-          </div>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
-        </div>
-      </div>
-    </div>
-    </div>

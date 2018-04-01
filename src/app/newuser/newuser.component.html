@@ -1,0 +1,69 @@
+<div class="card">
+  <div class="card-header">
+    Create New User
+  </div>
+  <div class="card-body">
+    <div class="row form-input-row">
+      <div class=" col-md-6">
+        <label for="inputEmail4">Email</label>
+        <input [(ngModel)]="email" type="email" class="form-control" id="inputEmail4" placeholder="Email" required>
+      </div>
+      <div class="col-md-6">
+        <label for="name">Name</label>
+        <input [(ngModel)]="username" type="text" class="form-control " id="name" placeholder="Full Name" required>
+      </div>
+    </div>
+    <div class="row form-input-row">
+      <div class=" col-md-6 ">
+        <label for="usertype">User Type</label>
+        <select type="select" [(ngModel)]="usertype" class="form-control" id="usertype" placeholder="User Type" required>
+          <option>Admin</option>
+          <option>Authour</option>
+        </select>
+      </div>
+      <div class="col-md-6">
+        <label for="status">User Status</label>
+        <select [(ngModel)]="active" type="select" class="form-control" id="status" placeholder="Status" required>
+          <option value="true">Active</option>
+          <option value="false">Disabled</option>
+        </select>
+      </div>
+    </div>
+    <div class="row form-input-row">
+      <div class="col-md-6">
+        <label for="twt">Your Twitter Id</label>
+        <div class="input-group">
+          <span class="input-group-addon" id="sizing-addon1">twitter.com/@</span>
+          <input [(ngModel)]="twitterlink" id="twt" type="text" class="form-control" placeholder="Twitter URL" aria-label="Twitter URL"
+            aria-describedby="sizing-addon1">
+        </div>
+      </div>
+    </div>
+    <div class="row form-input-row">
+      <div class=" col-md-6">
+        <label for="password1">Password</label>
+        <input [(ngModel)]="password" type="password" class="form-control" id="password1" placeholder="Password less than 10 digit"
+          required>
+      </div>
+    </div>
+    <div class="row form-input-row">
+      <div class=" col-md-6 ">
+        <label for="password2">Corfirm Password</label>
+        <input type="password" class="form-control" id="password2" placeholder="Confirm Password" required>
+      </div>
+    </div>
+    <br>
+    <div class="row form-input-row">
+      <div class="col-md-6">
+        <button type="submit" class="btn btn-primary btn-lg btn-block" (click)="createUser()">Submit</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade bd-example-modal-lg" data-backdrop="static" data-keyboard="false" tabindex="-1">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content" style="width: 48px">
+      <span class="fa fa-spinner fa-spin fa-3x"></span>
+    </div>
+  </div>
+</div>

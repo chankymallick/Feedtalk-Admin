@@ -6,17 +6,22 @@ import { FormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
 import { FeedUploadComponent } from './feed-upload/feed-upload.component';
 import { FeedListComponent } from './feed-list/feed-list.component';
+import { NewuserComponent } from './newuser/newuser.component';
 
 const appRoutes: Routes = [
   { path: 'feedUpload', component: FeedUploadComponent },
-  { path: 'feedList', component: FeedListComponent }
+  { path: 'feedList', component: FeedListComponent },
+  { path: 'newuser', component:  NewuserComponent }
 ]
 
 @NgModule({
   declarations: [
     AppComponent,
     FeedUploadComponent,
-    FeedListComponent
+    FeedListComponent,
+    NewuserComponent
+    
+,
   ],
   imports: [
     RouterModule.forRoot(

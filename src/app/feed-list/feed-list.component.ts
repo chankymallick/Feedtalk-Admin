@@ -8,8 +8,6 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
   styleUrls: ['./feed-list.component.css']
 })
 export class FeedListComponent implements OnInit {
-  isResultError;
-  succesdata;
   AllFeeds;
   constructor(private http: HttpClient) {
   }
@@ -24,11 +22,19 @@ export class FeedListComponent implements OnInit {
   }
 
   public loadAllFeeds() {
-    this.http.get('https://localhost:8443/feed/Top20Feeds').subscribe(data => {
+    this.http.get('http://localhost:8080/feed/AllFeeds').subscribe(data => {
       this.AllFeeds = data;     
     }, (err: HttpErrorResponse) => {
-      this.isResultError = false;
-      this.succesdata = JSON.stringify(JSON.parse(err.error).message);
+   
+    });
+  }
+  public updateFeed(Feed:any,selectBoxId:string){
+    var isPublished = (<HTMLInputElement>document.getElementById("ispublished"+selectBoxId)).value;   
+    this.http.post('http://localhost:8080/feed/updatepublish/'+Feed.feedId+'/'+isPublished+'',"").subscribe(data => {
+     alert(data)
+    }, (err: HttpErrorResponse) => {
+      alert(err)
+     
     });
   }
 }

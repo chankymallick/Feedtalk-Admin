@@ -1,5 +1,5 @@
 declare var $;
-
+declare var escape:any;
 import { Component } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 @Component({
@@ -30,7 +30,7 @@ export class FeedUploadComponent {
     $("#txtEditor").Editor();
   }
   public isFeedUrlUnique() {
-    this.http.get('https://localhost:8443/feed/NewFeed').subscribe(data => {
+    this.http.get('http://localhost:8080/feed/NewFeed').subscribe(data => {
       if (data == "true") {
         this.verifiedUrl = true;
       }
@@ -46,19 +46,28 @@ export class FeedUploadComponent {
     console.log(this.getHeaderJson());
   }
   public upload() {
-    this.http.post('https://localhost:8443/feed/NewFeed', this.getHeaderJson()).subscribe(data => {
-      this.isResultError = true;
-      this.succesdata = JSON.stringify("Feed uploaded Succesfully");
+    $('.modal1').modal('show');   
+    this.http.post('http://localhost:8080/feed/NewFeed', this.getHeaderJson()).subscribe(data => {
+ 
+      // this.isResultError = true;
+      // this.succesdata = JSON.stringify("Feed uploaded Succesfully");   
+      console.log(JSON.stringify(data));
     }, (err: HttpErrorResponse) => {
-      this.isResultError = false;
-      this.succesdata = JSON.stringify(JSON.parse(err.error).message);
+      console.log(JSON.stringify(err));
+ 
+      // this.isResultError = false;
+      // this.succesdata = JSON.stringify(JSON.parse(err.error).message);  
     });
+    $('.modal1').modal('hide');
   }
   public uploadLater() {
     alert("uploadLater");
   }
   public getEncodedContent() {
-    return encodeURI($(".Editor-editor").html());
+    return $(".Editor-editor").html();
+  }
+  public htmlEncode(value:string){    
+    return $('<div/>').text(value).html();
   }
   public getHeaderJson() {
     let jsonBody = {
