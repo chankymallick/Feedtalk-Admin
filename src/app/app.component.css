@@ -6,7 +6,6 @@
   background-color: #2e353d;
   position: fixed;
   float: left;
-  width: 13%;
   height: 100%;
   color: #e1ffff;
   /* margin-top: 65px; */
@@ -188,7 +187,7 @@ body {
   width: 0;
   position: fixed;
   /* Stay in place */
-  z-index: 1;
+  z-index: 1029;
   /* Sit on top */
   left: 0;
   top: 0;

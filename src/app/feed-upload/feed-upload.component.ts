@@ -2,6 +2,9 @@ declare var $;
 declare var escape:any;
 import { Component } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { Router } from '@angular/router';
+import { Utility } from '../Utility';
+
 @Component({
   selector: 'app-feed-upload',
   templateUrl: './feed-upload.component.html',
@@ -19,11 +22,12 @@ export class FeedUploadComponent {
   headline: string;
   headLineImage: string;
   catagory: string;
-  authourName: string = "Chanky Mallick";
-  published = true;
+  authourName: string = Utility.getCookie("UserName");
+  published = false;
   shared = 0;
-
-  constructor(private http: HttpClient) {
+  tags:string;
+  viewOrder:number;
+  constructor(private http: HttpClient,public router:Router) {
 
   }
   ngOnInit() {
@@ -42,23 +46,18 @@ export class FeedUploadComponent {
       this.succesdata = JSON.stringify(JSON.parse(err.error).message);
     });
   }
-  public preview() {
-    console.log(this.getHeaderJson());
+  public preview() {    
+    this.router.navigate(['preview/' +this.urlLink]);
   }
   public upload() {
-    $('.modal1').modal('show');   
-    this.http.post('http://localhost:8080/feed/NewFeed', this.getHeaderJson()).subscribe(data => {
- 
-      // this.isResultError = true;
-      // this.succesdata = JSON.stringify("Feed uploaded Succesfully");   
-      console.log(JSON.stringify(data));
-    }, (err: HttpErrorResponse) => {
-      console.log(JSON.stringify(err));
- 
-      // this.isResultError = false;
-      // this.succesdata = JSON.stringify(JSON.parse(err.error).message);  
+     
+    this.http.post('http://localhost:8080/feed/NewFeed', this.getHeaderJson()).subscribe(data => { 
+      $('#succesModal').modal('show');
+    }, (err: HttpErrorResponse) => {         
+      $('#errorModal').modal('show');
+      $("#errorMessage").html(err.message);
     });
-    $('.modal1').modal('hide');
+   
   }
   public uploadLater() {
     alert("uploadLater");
@@ -78,10 +77,12 @@ export class FeedUploadComponent {
       "headline": this.headline,
       "headLineImage": this.headLineImage,
       "catagory": this.catagory,
-      "authourName": this.authourName,
-      "published": true,
-      "shared": 1,
-      "publishingDate": null
+      "authourName": $("#authourName").val(),
+      "published": false,
+      "shared": 0,
+      "publishingDate": null,
+      "tags":this.tags,
+      "viewOrder":this.viewOrder
     };
     console.log(jsonBody);
     return jsonBody;

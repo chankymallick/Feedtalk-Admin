@@ -7,11 +7,17 @@ import { RouterModule, Routes } from '@angular/router';
 import { FeedUploadComponent } from './feed-upload/feed-upload.component';
 import { FeedListComponent } from './feed-list/feed-list.component';
 import { NewuserComponent } from './newuser/newuser.component';
+import { PreviewComponent } from './preview/preview.component';
+import { EscapeHtmlPipe } from './pipes/keep-html.pipe';
+import { EditfeedComponent } from './editfeed/editfeed.component';
 
 const appRoutes: Routes = [
   { path: 'feedUpload', component: FeedUploadComponent },
   { path: 'feedList', component: FeedListComponent },
-  { path: 'newuser', component:  NewuserComponent }
+  { path: 'newuser', component:  NewuserComponent },
+  { path: 'preview/:Feed', component: PreviewComponent },
+  { path: 'edit/:Feed', component: EditfeedComponent },
+
 ]
 
 @NgModule({
@@ -19,14 +25,17 @@ const appRoutes: Routes = [
     AppComponent,
     FeedUploadComponent,
     FeedListComponent,
-    NewuserComponent
+    NewuserComponent,
+    PreviewComponent,
+    EscapeHtmlPipe,
+    EditfeedComponent
     
 ,
   ],
   imports: [
     RouterModule.forRoot(
       appRoutes,
-      { enableTracing: true } // <-- debugging purposes only
+      { enableTracing: false } // <-- debugging purposes only
     ),
     BrowserModule,
     HttpClientModule,

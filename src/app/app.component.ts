@@ -37,10 +37,12 @@ export class AppComponent {
     Utility.setCookie("LoginEmail", btoa(this.LoginEmail), 5);
     Utility.setCookie("LoginPassword", btoa(this.LoginPassword), 5);
     Utility.setCookie("Authourized", "TRUE", 5);
+    
     this.utility.httpPostRequest("user/authenticate/", "").subscribe(data => {
-      var status: Response = data;
+      var status: any = data;
       if (status != null || status != "") {
         if (status.ATHOURIZED == "TRUE") {
+          Utility.setCookie("UserName", status.USER_NAME, 5);
           document.getElementById("myNav").style.display = "none";
         }
         else {

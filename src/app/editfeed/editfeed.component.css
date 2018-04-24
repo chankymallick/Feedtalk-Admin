@@ -1,0 +1,48 @@
+
+  .logincard {
+    float: none;
+    margin: 0px auto;
+    margin-top: 50px;
+   
+  }
+  
+  .form-input-row{
+      margin-bottom: 10px;
+  }
+
+  .navbar-custom{
+    
+  }
+  .whole-container{
+      margin-top: 60px;
+      
+  }
+ .verified_url{
+   background-color: palegreen !important;
+ }
+ .verified_url_Exist{
+  background-color:indianred !important;
+}
+
+.bd-example-modal-lg .modal-dialog{
+  display: table;
+  position: relative;
+  margin: 0 auto;
+  top: calc(50% - 24px);
+}
+
+.bd-example-modal-lg .modal-dialog .modal-content{
+  background-color: transparent;
+  border: none;
+}
+.bd-example-modal-lg .modal-dialog{
+  display: table;
+  position: relative;
+  margin: 0 auto;
+  top: calc(50% - 24px);
+}
+
+.bd-example-modal-lg .modal-dialog .modal-content{
+  background-color: transparent;
+  border: none;
+}

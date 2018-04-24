@@ -1,7 +1,8 @@
 declare var $;
+
 import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-feed-list',
   templateUrl: './feed-list.component.html',
@@ -9,32 +10,43 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 })
 export class FeedListComponent implements OnInit {
   AllFeeds;
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient,public router:Router) {
   }
 
   ngOnInit() {
- 
+
     this.loadAllFeeds();
-    $(document).ready( function () {      
+    $(document).ready(function () {
       $('#table_id').DataTable();
-      
-  } );
+
+    });
   }
 
   public loadAllFeeds() {
     this.http.get('http://localhost:8080/feed/AllFeeds').subscribe(data => {
-      this.AllFeeds = data;     
+      this.AllFeeds = data;
     }, (err: HttpErrorResponse) => {
-   
+
     });
   }
-  public updateFeed(Feed:any,selectBoxId:string){
-    var isPublished = (<HTMLInputElement>document.getElementById("ispublished"+selectBoxId)).value;   
-    this.http.post('http://localhost:8080/feed/updatepublish/'+Feed.feedId+'/'+isPublished+'',"").subscribe(data => {
-     alert(data)
+  public updateFeed(Feed: any, selectBoxId: string) {
+    var isPublished = (<HTMLInputElement>document.getElementById("ispublished" + selectBoxId)).value;
+    var order = (<HTMLInputElement>document.getElementById("viewOrder" + Feed.feedId)).value;
+    Feed["published"] = isPublished;
+    Feed["viewOrder"] = order;
+    this.http.post('http://localhost:8080/feed/updatefeed/' + Feed.feedId + '/', Feed).subscribe(data => {
+      alert(data)
     }, (err: HttpErrorResponse) => {
       alert(err)
-     
+
     });
+  }
+  public preview(urllink:string){
+    this.router.navigate(['preview/'+urllink]);
+
+  }
+  public edit(urllink:string){
+    this.router.navigate(['edit/'+urllink]);
+
   }
 }
