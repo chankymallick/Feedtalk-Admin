@@ -23,7 +23,7 @@
       <th>
         <img src='{{Feed.headLineImage}}' height="80px" width="80px" />
       </th>
-      <th>{{Feed.publishingDate}}</th>
+      <th>{{getTimeInterval(Feed.publishingDate)}}</th>
       <th>
         <a style="text-decoration: underline;color:blue;cursor: pointer;" (click)="preview(Feed.urlLink)">View</a><br>
         <a style="text-decoration: underline;color:blue;cursor: pointer;" (click)="edit(Feed.urlLink)">Edit</a>
@@ -44,3 +44,44 @@
     </tr>
   </tbody>
 </table>
+
+<div class="modal fade" id="succesModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Result</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+      </div>
+      <div class="modal-body">
+        <h1><span class="badge badge-success">Edit Succesfull</span> <img style="height: 60px;width: 60px; display: inline;" src="/assets/succes.png"> </h1>
+      </div>
+      <div class="modal-footer">
+        <button type="button"  class="btn btn-primary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="modal fade" id="errorModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Result</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+      </div>
+      <div class="modal-body">
+        <h1><span class="badge badge-danger">Edit Failed</span>  <img style="height: 60px;width: 60px; display: inline;" src="/assets/error.png"></h1>   
+         
+      </div>
+      <div class="modal-footer">
+          <span id="errorMessage" class="badge badge-warning"></span>
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>

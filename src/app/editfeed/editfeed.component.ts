@@ -1,8 +1,8 @@
 declare var $;
-declare var escape:any;
+declare var escape: any;
 import { Component } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { Router ,ActivatedRoute} from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 
 interface Feed {
@@ -21,8 +21,8 @@ interface Feed {
   likes?: number;
   dislikes?: number;
   comments?: string;
-  tags?:string;
-  viewOrder?:number;
+  tags?: string;
+  viewOrder?: number;
 }
 @Component({
   selector: 'app-editfeed',
@@ -36,39 +36,39 @@ export class EditfeedComponent {
   isResultError;
   succesdata = "";
   content: string;
-  contentPreview :string;  
+  contentPreview: string;
   views = 0;
   urlLink: string;
   headline: string;
   headLineImage: string;
   catagory: string;
   authourName: string;
-  published:boolean;
+  published: boolean;
   shared = 0;
-  tags:string;
-  viewOrder:number;
-  feedId:number;
+  tags: string;
+  viewOrder: number;
+  feedId: number;
 
-  public APIHost = "http://192.168.1.6:8080";
-  public feed:Feed;
-  public parameterLink:string; 
-  constructor(public route: ActivatedRoute,private http: HttpClient,public router:Router) {
-    this.route.params.subscribe(params => {     
-      this.parameterLink = params.Feed;   
+  public APIHost = "http://localhost:8080";
+  public feed: Feed;
+  public parameterLink: string;
+  constructor(public route: ActivatedRoute, private http: HttpClient, public router: Router) {
+    this.route.params.subscribe(params => {
+      this.parameterLink = params.Feed;
     });
     this.getArticle();
   }
   public getArticle() {
-    this.http.get(this.APIHost + "/feed/FeedByUrl/"+this.parameterLink+"/").subscribe(data => {
-      this.headline = data["headline"];    
-      this.urlLink = data["urlLink"];    
-      this.headLineImage = data["headLineImage"];    
-      this.authourName = data["authourName"];    
-      this.catagory = data["catagory"];    
-      this.contentPreview = data["contentPreview"];     
-      this.tags =   data["tags"];
+    this.http.get(this.APIHost + "/feed/FeedByUrl/" + this.parameterLink + "/").subscribe(data => {
+      this.headline = data["headline"];
+      this.urlLink = data["urlLink"];
+      this.headLineImage = data["headLineImage"];
+      this.authourName = data["authourName"];
+      this.catagory = data["catagory"];
+      this.contentPreview = data["contentPreview"];
+      this.tags = data["tags"];
       this.published = data["published"];
-      this.viewOrder =   data["viewOrder"];      
+      this.viewOrder = data["viewOrder"];
       $(".Editor-editor").html(data["content"]);
       this.feedId = data["feedId"];
     });
@@ -90,22 +90,19 @@ export class EditfeedComponent {
       this.succesdata = JSON.stringify(JSON.parse(err.error).message);
     });
   }
-  public preview() {    
-    this.router.navigate(['preview/' +this.urlLink]);
+  public preview() {
+    this.router.navigate(['preview/' + this.urlLink]);
   }
-  public upload() {      
+  public upload() {
     this.http.post('http://localhost:8080/feed/updatefeed/' + this.feedId + '/', this.getHeaderJson()).subscribe(data => {
- 
-      // this.isResultError = true;
-      // this.succesdata = JSON.stringify("Feed uploaded Succesfully");   
+      $('#succesModal').modal('show');
       console.log(JSON.stringify(data));
     }, (err: HttpErrorResponse) => {
       console.log(JSON.stringify(err));
- 
-      // this.isResultError = false;
-      // this.succesdata = JSON.stringify(JSON.parse(err.error).message);  
+      $('#errorModal').modal('show');
+      $("#errorMessage").html(err.message);
     });
-   
+
   }
   public uploadLater() {
     alert("uploadLater");
@@ -113,25 +110,24 @@ export class EditfeedComponent {
   public getEncodedContent() {
     return $(".Editor-editor").html();
   }
-  public htmlEncode(value:string){    
+  public htmlEncode(value: string) {
     return $('<div/>').text(value).html();
   }
   public getHeaderJson() {
     let jsonBody = {
       "content": this.getEncodedContent(),
-      contentPreview :this.contentPreview,     
+      contentPreview: this.contentPreview,
       "urlLink": this.urlLink,
       "headline": this.headline,
       "headLineImage": this.headLineImage,
       "catagory": this.catagory,
       "authourName": $("#authourName").val(),
-      "published": this.published,     
-      "tags":this.tags,
-      "viewOrder":this.viewOrder
+      "published": this.published,
+      "tags": this.tags,
+      "viewOrder": this.viewOrder
     };
     console.log(jsonBody);
     return jsonBody;
   }
 
 }
-     

@@ -1,5 +1,5 @@
 declare var $;
-
+import {Utility} from '../Utility';
 import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
 })
 export class FeedListComponent implements OnInit {
   AllFeeds;
-  constructor(private http: HttpClient,public router:Router) {
+  constructor(private http: HttpClient, public router: Router) {
   }
 
   ngOnInit() {
@@ -35,18 +35,23 @@ export class FeedListComponent implements OnInit {
     Feed["published"] = isPublished;
     Feed["viewOrder"] = order;
     this.http.post('http://localhost:8080/feed/updatefeed/' + Feed.feedId + '/', Feed).subscribe(data => {
-      alert(data)
+      $('#succesModal').modal('show');
+      console.log(JSON.stringify(data));
     }, (err: HttpErrorResponse) => {
-      alert(err)
+      $('#errorModal').modal('show');
+      $("#errorMessage").html(err.message);
 
     });
   }
-  public preview(urllink:string){
-    this.router.navigate(['preview/'+urllink]);
+  public preview(urllink: string) {
+    this.router.navigate(['preview/' + urllink]);
 
   }
-  public edit(urllink:string){
-    this.router.navigate(['edit/'+urllink]);
+  public edit(urllink: string) {
+    this.router.navigate(['edit/' + urllink]);
 
+  }
+  public getTimeInterval(time:number){
+    return Utility.getTimeInterval(time);
   }
 }
